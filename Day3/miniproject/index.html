@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 300px;
+        margin: auto;
+        font-family: sans-serif;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+      input,
+      button {
+        width: 100%;
+        margin: 5px 0;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Tip Calculator</h2>
+      <label>Bill Amount (RM):</label>
+      <input type="number" id="billInput" />
+
+      <label>Tip Percentage (%):</label>
+      <input type="number" id="tipInput" />
+
+      <button id="calculateBtn">Calculate</button>
+
+      <p id="result"></p>
+    </div>
+
+    <script>
+      const billInput = document.getElementById("billInput");
+      const tipInput = document.getElementById("tipInput");
+      const result = document.getElementById("result");
+      const button = document.getElementById("calculateBtn");
+
+      button.addEventListener("click", function () {
+        const bill = parseFloat(billInput.value);
+        const tipPercent = parseFloat(tipInput.value);
+
+        if (isNaN(bill) || isNaN(tipPercent)) {
+          result.textContent = "Please enter valid numbers.";
+          return;
+        }
+
+        const tip = bill * (tipPercent / 100);
+        const total = bill + tip;
+
+        result.textContent = `Tip: RM${tip.toFixed(
+          2
+        )} | Total: RM${total.toFixed(2)}`;
+      });
+    </script>
+  </body>
+</html>
